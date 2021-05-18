@@ -25,7 +25,7 @@ app.use(bodyParser.json())
 
 // index
 app.get('/', function (req, res) {
-	res.send('hello world i am a secret bot')
+	res.send('¡Hola! Soy Bacterium, Bot de EkvilibroLAB')
 })
 
 // for facebook verification
@@ -33,7 +33,7 @@ app.get('/webhook/', function (req, res) {
 	if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
 		res.send(req.query['hub.challenge'])
 	} else {
-		res.send('Error, wrong token')
+		res.send('Llave equivocada ¿Estás usando la del repositorio?')
 	}
 })
 
@@ -46,15 +46,15 @@ app.post('/webhook/', function (req, res) {
 		if (event.message && event.message.text) {
 			let text = event.message.text
 			if (text === 'Generic'){ 
-				console.log("welcome to chatbot")
+				console.log("Bienvenido al chatbot")
 				//sendGenericMessage(sender)
 				continue
 			}
-			sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+			sendTextMessage(sender, "Texto recibido, eco: " + text.substring(0, 200))
 		}
 		if (event.postback) {
 			let text = JSON.stringify(event.postback)
-			sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
+			sendTextMessage(sender, "Postback recibido: "+text.substring(0, 200), token)
 			continue
 		}
 	}
@@ -79,7 +79,7 @@ function sendTextMessage(sender, text) {
 		}
 	}, function(error, response, body) {
 		if (error) {
-			console.log('Error sending messages: ', error)
+			console.log('Error enviando mensajes: ', error)
 		} else if (response.body.error) {
 			console.log('Error: ', response.body.error)
 		}
@@ -128,7 +128,7 @@ function sendGenericMessage(sender) {
 		}
 	}, function(error, response, body) {
 		if (error) {
-			console.log('Error sending messages: ', error)
+			console.log('Error enviando mensages: ', error)
 		} else if (response.body.error) {
 			console.log('Error: ', response.body.error)
 		}
@@ -137,5 +137,5 @@ function sendGenericMessage(sender) {
 
 // spin spin sugar
 app.listen(app.get('port'), function() {
-	console.log('running on port', app.get('port'))
+	console.log('corre en el puerto', app.get('port'))
 })
